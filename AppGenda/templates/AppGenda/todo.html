@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+
+    <div class="todoContainer">Seccion  To Do</div>
+    {% for task in tasks %}
+        <p>Tarea: {{task.detail}}</p>
+    {% endfor %}
+    
+
+
+{% endblock main %}
+
+

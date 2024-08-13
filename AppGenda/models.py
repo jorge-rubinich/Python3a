@@ -6,25 +6,37 @@ class Frequency(models.TextChoices):
     MONTH='M','Mensual'
     YEAR='A','Anual'
 
+class User(models.Model):
+    user= models.CharField(max_length=15, db_index=True)
+    realName= models.CharField(max_length=40)    
+    avatar= models.CharField(max_length=20, null=True, blank=True)
+
 class ToDo(models.Model):
-    # ToDo list (Just a list of tasks, without a date)
-    id= models.IntegerField(primary_key=True)
-    userId= models.IntegerField()
+    # ToDo list (Just a listapp of tasks, without a date)
+    #id= models.IntegerField(primary_key=True)
+    user= models.CharField(max_length=15)
     detail= models.CharField(max_length=40)
     done = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.detail
     
 class ToDoDate(models.Model):
     # Todo list with a timeout date
-    id= models.IntegerField(primary_key=True)
-    userId= models.IntegerField()
+    user= models.CharField(max_length=15)
     detail= models.CharField(max_length=40)
     frequency=models.CharField(max_length=1, choices= Frequency.choices)
     freq_data= models.CharField(max_length=5)  
     done = models.DateTimeField(null=True, blank=True)
 
-class Bills(models.Model):
+    def __str__(self):
+        return self.detail
+    
+class ToPay(models.Model):
     # Services's bills to be paid. 
-    id= models.IntegerField(primary_key=True)
-    userId= models.IntegerField()
+    user= models.CharField(max_length=15)
     detail= models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.detail
       
